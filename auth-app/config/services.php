@@ -53,10 +53,10 @@ return [
         'redirect' => 'http://localhost:8000/auth/callback/google',
     ],
 
-    'linkedin' => [
+    'linkedin-openid' => [
         'client_id' => env('LINKEDIN_CLIENT_ID'),
         'client_secret' => env('LINKEDIN_CLIENT_SECRET'),
-        'redirect' => 'http://localhost:8000/auth/callback/linkedin',
+        'redirect' => 'http://localhost:8000/auth/callback/linkedin-openid',
     ],
 
 

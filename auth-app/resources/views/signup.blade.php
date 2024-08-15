@@ -60,7 +60,7 @@
                         <li><a href="{{ route('social-redirect', 'facebook') }}">Facebook</a></li>
                         <li><a href="{{ route('social-redirect','google') }}">Google</a></li>
                         <li><a href="{{ route('social-redirect','github') }}">Github</a></li>
-                        <li><a href="{{ route('social-redirect','linkedIn') }}">LinkedIn</a></li>
+                        <li><a href="{{ route('social-redirect','linkedin-openid') }}">LinkedIn</a></li>
                     </ul>
                 </div>
             </aside>

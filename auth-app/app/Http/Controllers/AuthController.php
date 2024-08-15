@@ -73,9 +73,10 @@ class AuthController extends Controller
 
     }
     public function socialCallback($social){
+     
 
         $user = Socialite::driver($social)->user();
-        // dd($user);
+      
 
         if(User::where('email', $user->email)->exists()){
             
