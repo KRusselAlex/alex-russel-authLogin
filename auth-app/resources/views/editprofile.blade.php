@@ -121,7 +121,7 @@
 
                 @endif
                 <div class="text-center">
-                    your default password is 1234
+                    your default password is <span class="text-blue-800">12345</span>
                 </div>
                 <div class="flex justify-center mt-20 px-8 ">
                     <form method="POST" class="max-w-2xl" action="/editprofile">
