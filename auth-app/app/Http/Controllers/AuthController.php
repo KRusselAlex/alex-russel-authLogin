@@ -94,7 +94,7 @@ class AuthController extends Controller
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
-            return view('dashboard');
+            return redirect()->route('dashboard');
         } else {
             $users = new User();
             if ($user->name) {
@@ -107,7 +107,7 @@ class AuthController extends Controller
             $users->email = $user->email;
             $users->password = "12345";
             $users->method = $social;
-            $users->token_auth = $user->token;
+            $users->token_auth = $user->id;
             $users->save();
 
             $userA = User::where('email', $user->email)->first();
@@ -116,7 +116,7 @@ class AuthController extends Controller
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
-            return view('dashboard');
+            return redirect()->route('dashboard');
         }
 
         // $user->token

@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $data = User::find(Auth::user()->id);
         return view('dashboard', ['data' => $data]);
-    });
+    })->name('dashboard');
 
     Route::controller(UserController::class)->group(function () {
         Route::patch('editprofile', 'update');

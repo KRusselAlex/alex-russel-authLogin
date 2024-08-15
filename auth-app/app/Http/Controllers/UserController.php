@@ -66,7 +66,7 @@ class UserController extends Controller
                 ]);
             } else {
 
-                return redirect("profile/editprofile")->with('status', "Old password is incorrect");
+                return redirect("userprofile")->with('status', "Old password is incorrect");
             }
         } else {
 
@@ -79,11 +79,11 @@ class UserController extends Controller
                 ]);
             } else {
 
-                return redirect("profile/editprofile")->with('status', "You need to add the correct old password");
+                return redirect("userprofile")->with('status', "You need to add the correct old password");
             }
         }
 
-        return redirect("profile/userprofile")->with('status', "Profile updated");
+        return redirect("userprofile")->with('status', "Profile updated");
     }
 
     public function destroy()
