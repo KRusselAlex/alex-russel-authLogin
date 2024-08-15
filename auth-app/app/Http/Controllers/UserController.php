@@ -21,7 +21,12 @@ class UserController extends Controller
     public function editprofileview()
     {
         $data = User::find(Auth::user()->id);
-        return view('profile', ['data' => $data]);
+        return view('editprofile', ['data' => $data]);
+    }
+
+    public function alluser(){
+        $datas = User::all();
+        return view('allusers',['datas' => $datas]);
     }
 
 
@@ -85,6 +90,6 @@ class UserController extends Controller
         $data = User::findOrFail($id);
         $data->delete();
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }
