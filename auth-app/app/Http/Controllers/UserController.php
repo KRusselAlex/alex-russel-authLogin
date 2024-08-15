@@ -26,7 +26,8 @@ class UserController extends Controller
 
     public function alluser(){
         $datas = User::all();
-        return view('allusers',['datas' => $datas]);
+        $user =  User::find(Auth::user()->id);
+        return view('allusers',['datas' => $datas, 'user' => $user]);
     }
 
 

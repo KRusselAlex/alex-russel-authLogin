@@ -12,26 +12,28 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('login');
     }
 
-    public function authLogin(Request $request){
+    public function authLogin(Request $request)
+    {
         //Form input validation
         $validatedAttributes = request()->validate([
-            'email' =>['required','email'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
- 
+
         ///Authentification attemptation
         //But we can check, if it false, throw errors messages
-        if(!Auth::attempt($validatedAttributes)){
+        if (!Auth::attempt($validatedAttributes)) {
             throw ValidationException::withMessages([
                 'email' => "Email or password is incorrect !"
             ]);
-        }  
+        }
 
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
         Auth::login($user);
 
@@ -42,83 +44,88 @@ class AuthController extends Controller
         return redirect('/dashboard');
     }
 
-    public function register(){
+    public function register()
+    {
         return view('register');
     }
 
-    public function authRegister(Request $request){
+    public function authRegister(Request $request)
+    {
         //Input data validation
-     
-       $validatedAttributes =  $request->validate([
-            'name' => ['required', 'string', 'regex:/^([A-Za-z0-9\-\_\s]+)$/'], 
+
+        $validatedAttributes =  $request->validate([
+            'name' => ['required', 'string', 'regex:/^([A-Za-z0-9\-\_\s]+)$/'],
             'email' => ['required', 'unique:users', 'regex:/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'],
             'password' => ['required', Password::min(8)->max(16)->letters()->numbers()->symbols(), 'confirmed'],
         ]);
 
         // dd($validatedAttributes);
-        $user = User::create($validatedAttributes);     
+        $user = User::create($validatedAttributes);
 
 
         //User login
-     
+
         // Auth::login($user);
 
         //Redirect
         return redirect('/');
     }
 
-    public function socialRedirect($social){
+    public function socialRedirect($social)
+    {
 
         return Socialite::driver($social)->redirect();
-
     }
-    public function socialCallback($social){
-     
+    public function socialCallback($social)
+    {
+
 
         $user = Socialite::driver($social)->user();
-      
 
-        if(User::where('email', $user->email)->exists()){
-            
-            $users = User::where('email',$user->email)->first();
+        // dd($user);
+        if (User::where('email', $user->email)->exists()) {
+
+
+
+            $users = User::where('email', $user->email)->first();
+
 
             Auth::login($users);
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
             return redirect('/dashboard');
-
-        }else{
+        } else {
             $users = new User();
-            if($user->name){
+            if ($user->name) {
+
                 $users->name = $user->name;
-
-            }{
+            } else {
                 $users->name = $user->nickname;
-
             }
-           
+
             $users->email = $user->email;
             $users->password = "12345";
             $users->method = $social;
+            $users->token_auth = $user->token;
             $users->save();
 
-            $userA = User::where('email',$user->email)->first();
-            
+            $userA = User::where('email', $user->email)->first();
+
             Auth::login($userA);
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
             return redirect('/dashboard');
-
         }
-        
+
         // $user->token
-        
+
     }
 
 
-    public function logout(){
+    public function logout()
+    {
         // Logout current user!!
         Auth::logout();
 

@@ -30,22 +30,22 @@ Route::get('/profile', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         $data = User::find(Auth::user()->id);
-        return view('profile', ['data' => $data]);
+        $user =  User::find(Auth::user()->id);
+        return view('profile', ['data' => $data, "user" => $user]);
     });
-    
+
     Route::get('/dashboard', function () {
         $data = User::find(Auth::user()->id);
-        return view('dashboard',['data' => $data]);
+        return view('dashboard', ['data' => $data]);
     });
 
     Route::controller(UserController::class)->group(function () {
         Route::patch('editprofile', 'update');
         Route::get('userprofile',  "editprofileview");
-        Route::get('alluser','alluser')->name("all-user");
+        Route::get('alluser', 'alluser')->name("all-user");
         // Route::get('profile/editprofile', 'editprofileview');
         // Route::delete('deleteprofile', 'deleteAccount');
     });
-
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -63,6 +63,6 @@ Route::controller(AuthController::class)->group(function () {
 
     //social media
 
-    Route::get('/auth/redirect/{social}','socialRedirect')->name('social-redirect');
+    Route::get('/auth/redirect/{social}', 'socialRedirect')->name('social-redirect');
     Route::get('/auth/callback/{social}', 'socialCallback')->name('social-callback');
 });
