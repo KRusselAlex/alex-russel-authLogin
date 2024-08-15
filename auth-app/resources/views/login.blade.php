@@ -4,7 +4,7 @@
     </x-slot:title>
 
     <div class="p-10">
-        <h1 class="mb-8 font-extrabold text-3xl">Login</h1>
+        <h1 class="mb-8 font-extrabold text-2xl">Login</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <form method="POST" action="/auth-login" class="shadow-lg rounded-lg py-4 px-5">

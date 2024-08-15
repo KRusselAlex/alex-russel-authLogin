@@ -4,14 +4,14 @@
     </x-slot:title>
 
     <div class="p-10">
-        <h1 class="mb-8 font-extrabold text-3xl">Register</h1>
+        <h1 class="mb-8 font-extrabold text-2xl">Register</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             <form method="POST" action="{{ route('auth.register') }}">
                 @csrf
                 <div>
-                    <label class="block font-semibold" for="name">Name</label>
-                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-2xl p-4 border-none block mt-1 w-full" id="name" type="text" name="name" required="required" autofocus="autofocus" placeholder="username"
+                    <label class="block font-semibold" for="name">Name:</label>
+                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base py-3 px-2  border-none block mt-1 w-full" id="name" type="text" name="name" required="required" autofocus="autofocus" placeholder="username"
                         value="{{ old('name') }}">
                     @if ($errors->has('name'))
                     <span class="text-red-500 text-sm">{{ $errors->first('name') }}</span>
@@ -19,8 +19,8 @@
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-semibold" for="email">Email</label>
-                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-2xl p-4 border-none block mt-1 w-full" id="email" type="email" name="email" required="required" placeholder="email"
+                    <label class="block font-semibold" for="email">Email:</label>
+                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base py-3 px-2 border-none block mt-1 w-full" id="email" type="email" name="email" required="required" placeholder="email"
                         value="{{ old('email') }}">
                     @if ($errors->has('email'))
                     <span class="text-red-500 text-sm">{{ $errors->first('email') }}</span>
@@ -28,16 +28,16 @@
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-semibold" for="password">Password</label>
-                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-2xl p-4 border-none block mt-1 w-full" id="password" type="password" name="password" required="required" autocomplete="new-password" placeholder="*********" value="{{ old('password') }}">
+                    <label class="block font-semibold" for="password">Password:</label>
+                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base py-3 px-2 border-none block mt-1 w-full" id="password" type="password" name="password" required="required" autocomplete="new-password" placeholder="*********" value="{{ old('password') }}">
                     @if ($errors->has('password'))
                     <span class="text-red-500 text-sm">{{ $errors->first('password') }}</span>
                     @endif
                 </div>
 
                 <div class="mt-4">
-                    <label class="block font-semibold" for="password">Confirm Password</label>
-                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-2xl p-4 border-none block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" placeholder="*********" required="required"  value="{{ old('password_confirmation') }}">
+                    <label class="block font-semibold" for="password">Confirm Password:</label>
+                    <input class="w-full shadow-inner bg-gray-100 rounded-lg placeholder-black text-base py-3 px-2  border-none block mt-1 w-full" id="password_confirmation" type="password" name="password_confirmation" placeholder="*********" required="required" value="{{ old('password_confirmation') }}">
                     @if ($errors->has('password_confirmation'))
                     <span
                         class="text-red-500 text-sm">{{ $errors->first('password_confirmation') }}</span>
@@ -46,16 +46,16 @@
                 </div>
 
                 <div class="flex items-center justify-between mt-8">
-                    <button type="submit" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10">Register</button>
-                    <a href="{{ route('login') }}" class="font-semibold">
-                        Already registered?
+                    <button type="submit" class="flex items-center justify-center px-3 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-indigo-700 md:py-3 md:text-base md:px-4">Signup</button>
+                    <a href="/login">
+                        Already registered? <span class="text-blue-700">Login</span>
                     </a>
                 </div>
             </form>
 
             <aside class="">
                 <div class="bg-gray-100 p-8 rounded">
-                    <h2 class="font-bold text-2xl">Login with social</h2>
+                    <h2 class="font-bold text-2xl">Register with social</h2>
                     <ul class="list-disc list-none mt-4 list-inside flex list-decoration-none  gap-x-3">
                         <li class="list-decoration-none"><a href="{{ route('social-redirect', 'facebook') }}" class="flex gap-x-4 items-center text-semibold list-decoration-none border bg-blue-700 text-white w-fit py-3 px-2 rounded-lg"><svg fill="#fff" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     viewBox="0 0 310 310" xml:space="preserve">
@@ -87,8 +87,8 @@
                                     </g>
                                 </svg>Github</a></li>
                         <li><a href="{{ route('social-redirect','linkedin-openid') }}" class="flex text-semibold gap-x-4 items-center list-decoration-none border bg-blue-700 text-white w-fit py-3 px-5 rounded-lg"><svg fill="#fff" width="20px" height="20px" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
-    <path d="M478.234 600.75V1920H.036V600.75h478.198Zm720.853-2.438v77.737c69.807-45.056 150.308-71.249 272.38-71.249 397.577 0 448.521 308.666 448.521 577.562v737.602h-480.6v-700.836c0-117.867-42.173-140.215-120.15-140.215-74.134 0-120.151 23.55-120.151 140.215v700.836h-480.6V598.312h480.6ZM239.099 0c131.925 0 239.099 107.294 239.099 239.099s-107.174 239.099-239.1 239.099C107.295 478.198 0 370.904 0 239.098 0 107.295 107.294 0 239.099 0Z" fill-rule="evenodd"/>
-</svg>LinkedIn</a></li>
+                                    <path d="M478.234 600.75V1920H.036V600.75h478.198Zm720.853-2.438v77.737c69.807-45.056 150.308-71.249 272.38-71.249 397.577 0 448.521 308.666 448.521 577.562v737.602h-480.6v-700.836c0-117.867-42.173-140.215-120.15-140.215-74.134 0-120.151 23.55-120.151 140.215v700.836h-480.6V598.312h480.6ZM239.099 0c131.925 0 239.099 107.294 239.099 239.099s-107.174 239.099-239.1 239.099C107.295 478.198 0 370.904 0 239.098 0 107.295 107.294 0 239.099 0Z" fill-rule="evenodd" />
+                                </svg>LinkedIn</a></li>
                     </ul>
                 </div>
             </aside>
