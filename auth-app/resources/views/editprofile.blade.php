@@ -110,7 +110,20 @@
             <div class="p-4">
                 <h1 class="text-2xl font-bold">Welcome to {{ $data->name  }} Page </h1>
                 <p class="mt-2 text-gray-600">Raising tomorrow's leaders.</p>
-                <div class="flex justify-center mt-20 px-8">
+
+                @if(session('status'))
+
+                <div class="alert alert-success text-center text-xl text-green-500 mb-3">
+
+                    {{ session('status') }}
+
+                </div>
+
+                @endif
+                <div class="text-center">
+                    your default password is 1234
+                </div>
+                <div class="flex justify-center mt-20 px-8 ">
                     <form method="POST" class="max-w-2xl" action="/editprofile">
 
                         @csrf
@@ -118,7 +131,7 @@
                         @method('PATCH')
 
 
-                        <div class="flex flex-wrap border shadow rounded-lg p-3">
+                        <div class="flex flex-wrap border shadow rounded-lg p-3 bg-white">
                             <h2 class="text-xl text-gray-600  pb-2">Account settings:</h2>
 
                             <div class="flex flex-col gap-2 w-full border-gray-400">
@@ -171,7 +184,7 @@
 
                                 <div class="flex justify-end">
                                     <button
-                                        class="py-1.5 px-3 m-1 text-center bg-violet-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700"
+                                        class="py-1.5 px-3 m-1 text-center bg-blue-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700"
                                         type="submit">Save changes</button>
                                 </div>
                             </div>
