@@ -14,13 +14,14 @@ class UserController extends Controller
     {
         $id = Auth::user()->id;
         $data = User::find($id);
+       
         return view('profile.userprofile', ['data' => $data]);
     }
 
     public function editprofileview()
     {
         $data = User::find(Auth::user()->id);
-        return view('profile.editprofile', ['data' => $data]);
+        return view('profile', ['data' => $data]);
     }
 
 

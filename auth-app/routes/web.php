@@ -1,8 +1,12 @@
 <?php
 
-use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AuthController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+
+
 
 
 Route::get('/', function () {
@@ -19,7 +23,8 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::get('/profile', function () {
-    return view('profile');
+    $data = User::find(Auth::user()->id);
+    return view('profile', ['data' => $data]);
 });
 
 
