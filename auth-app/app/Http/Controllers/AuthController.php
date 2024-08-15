@@ -113,7 +113,7 @@ class AuthController extends Controller
 
             $users->email = $user->email;
             $users->password = "12345";
-            $users->method .= "," . $social;
+            $users->method =  $social;
             $users->token_auth = $user->id;
             $users->save();
 
