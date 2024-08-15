@@ -94,7 +94,7 @@ class AuthController extends Controller
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
-            return redirect('/dashboard');
+            return view('dashboard');
         } else {
             $users = new User();
             if ($user->name) {
@@ -116,7 +116,7 @@ class AuthController extends Controller
             ///New session regeneration for connected user
             request()->session()->regenerate();
             //Redirection to the root 
-            return redirect('/dashboard');
+            return view('dashboard');
         }
 
         // $user->token

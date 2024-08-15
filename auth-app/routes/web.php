@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
         Route::get('userprofile',  "editprofileview");
         Route::get('alluser', 'alluser')->name("all-user");
         // Route::get('profile/editprofile', 'editprofileview');
-        // Route::delete('deleteprofile', 'deleteAccount');
+        Route::delete('deleteprofile', 'deleteAccount');
     });
 });
 

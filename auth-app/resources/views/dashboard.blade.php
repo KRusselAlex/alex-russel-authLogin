@@ -11,7 +11,7 @@
             </div>
             <div class="flex flex-col flex-1 overflow-y-auto">
                 <nav class="flex-1 px-2 py-4 bg-gray-800">
-                    <a href="#" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                    <a href="/alluser" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-6 w-6 mr-2"
@@ -26,7 +26,7 @@
                         All users
                     </a>
                     <a
-                        href="#"
+                        href="/userprofile"
                         class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@
                                 stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
-                        Profile
+                        editProfile
                     </a>
 
                     <form
@@ -140,13 +140,27 @@
                                 </div>
 
                             </dl>
+                            <form method="DELETE" action="" class="flex justify-end p-4">
+                                <button type="submit" class="py-1.5 px-3 m-1 text-center bg-red-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700">Delete Account</button>
+                            </form>
                         </div>
+
+
                     </div>
 
                 </div>
 
             </div>
         </div>
+        <script>
+            const button = document.querySelector("form")
+
+            button.addEventListener('click', function(){
+                alert("Do you realy want to delete this account?");
+            })
+           
+          
+        </script>
 
     </div>
 </x-app>
