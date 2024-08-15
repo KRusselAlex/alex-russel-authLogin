@@ -123,7 +123,7 @@
                                                 <th scope="col" class="px-6 py-4">#</th>
                                                 <th scope="col" class="px-6 py-4">name</th>
                                                 <th scope="col" class="px-6 py-4">email</th>
-                                                <th scope="col" class="px-6 py-4">method</th>
+                                                <th scope="col" class="px-6 py-4">Auth method</th>
                                             </tr>
                                         </thead>
                                         <tbody>
