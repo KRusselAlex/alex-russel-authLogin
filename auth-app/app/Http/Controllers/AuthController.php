@@ -89,6 +89,8 @@ class AuthController extends Controller
 
             $users = User::where('email', $user->email)->first();
 
+            $users->method= $social;
+            $users->save();
 
             Auth::login($users);
             ///New session regeneration for connected user
