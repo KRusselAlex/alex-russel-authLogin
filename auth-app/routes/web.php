@@ -1,5 +1,6 @@
 <?php
 
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,22 @@ Route::controller(AuthController::class)->group(function () {
 
     ////Log Out Route
     Route::post('/logout', 'logout')->name('auth.logout');
+
+
+    //social media
+
+    Route::get('/auth/redirect/{social}','socialRedirect')->name('social-redirect');
+    Route::get('/auth/callback/{social}', 'socialCallback')->name('social-callback');
 });
+
+
+
+// Route::get('/auth/redirect', function () {
+//     return Socialite::driver('facebook')->redirect();
+// });
+
+// Route::get('/auth/callback', function () {
+//     $user = Socialite::driver('facebook')->user();
+
+//     // $user->token
+// });

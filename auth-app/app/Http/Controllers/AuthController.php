@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -28,7 +29,11 @@ class AuthController extends Controller
             throw ValidationException::withMessages([
                 'email' => "Email or password is incorrect !"
             ]);
-        }
+        }  
+
+        $user = User::where('email',$request->email)->first();
+
+        Auth::login($user);
 
         ///New session regeneration for connected user
         request()->session()->regenerate();
@@ -50,9 +55,6 @@ class AuthController extends Controller
             'password' => ['required', Password::min(8)->max(16)->letters()->numbers()->symbols(), 'confirmed'],
         ]);
 
-        //User creation
-
-
         // dd($validatedAttributes);
         $user = User::create($validatedAttributes);     
 
@@ -61,10 +63,57 @@ class AuthController extends Controller
      
         // Auth::login($user);
 
-        // event(new Registered($user));
-
         //Redirect
         return redirect('/');
+    }
+
+    public function socialRedirect($social){
+
+        return Socialite::driver($social)->redirect();
+
+    }
+    public function socialCallback($social){
+
+        $user = Socialite::driver($social)->user();
+        // dd($user);
+
+        if(User::where('email', $user->email)->exists()){
+            
+            $users = User::where('email',$user->email)->first();
+
+            Auth::login($users);
+            ///New session regeneration for connected user
+            request()->session()->regenerate();
+            //Redirection to the root 
+            return redirect('/dashboard');
+
+        }else{
+            $users = new User();
+            if($user->name){
+                $users->name = $user->name;
+
+            }{
+                $users->name = $user->nickname;
+
+            }
+           
+            $users->email = $user->email;
+            $users->password = "12345";
+            $users->method = $social;
+            $users->save();
+
+            $userA = User::where('email',$user->email)->first();
+            
+            Auth::login($userA);
+            ///New session regeneration for connected user
+            request()->session()->regenerate();
+            //Redirection to the root 
+            return redirect('/dashboard');
+
+        }
+        
+        // $user->token
+        
     }
 
 

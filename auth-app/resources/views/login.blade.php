@@ -36,11 +36,12 @@
 
             <aside class="">
                 <div class="bg-gray-100 p-8 rounded">
-                    <h2 class="font-bold text-2xl">Instructions</h2>
+                    <h2 class="font-bold text-2xl">Login with social</h2>
                     <ul class="list-disc mt-4 list-inside">
-                        <li>All users must provide a valid email address and password to create an account.</li>
-                        <li>Users must not use offensive, vulgar, or otherwise inappropriate language in their username or profile information</li>
-                        <li>Users must not create multiple accounts for the same person.</li>
+                        <li><a href="{{ route('social-redirect', 'facebook') }}">Facebook</a></li>
+                        <li><a href="{{ route('social-redirect','google') }}">Google</a></li>
+                        <li><a href="{{ route('social-redirect','github') }}">Github</a></li>
+                        <li><a href="{{ route('social-redirect','linkedIn') }}">LinkedIn</a></li>
                     </ul>
                 </div>
             </aside>
