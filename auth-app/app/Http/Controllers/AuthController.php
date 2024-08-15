@@ -68,7 +68,7 @@ class AuthController extends Controller
         // Auth::login($user);
 
         //Redirect
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function socialRedirect($social)
@@ -130,6 +130,6 @@ class AuthController extends Controller
         Auth::logout();
 
         // //Redirect to root with disconnect status
-        return redirect('/');
+        return redirect('/login');
     }
 }

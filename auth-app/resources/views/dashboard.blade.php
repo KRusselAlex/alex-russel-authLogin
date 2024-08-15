@@ -140,8 +140,10 @@
                                 </div>
 
                             </dl>
-                            <form method="DELETE" action="" class="flex justify-end p-4">
-                                <button type="submit" class="py-1.5 px-3 m-1 text-center bg-red-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700">Delete Account</button>
+                            <form method="POST" action="/deleteprofile" class="flex justify-end p-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" id="balo" class="py-1.5 px-3 m-1 text-center bg-red-700 border rounded-md text-white  hover:bg-violet-500 hover:text-gray-100 dark:text-gray-200 dark:bg-violet-700">Delete Account</button>
                             </form>
                         </div>
 
@@ -153,13 +155,11 @@
             </div>
         </div>
         <script>
-            const button = document.querySelector("form")
+            const button = document.getElementById("balo")
 
-            button.addEventListener('click', function(){
+            button.addEventListener('click', function() {
                 alert("Do you realy want to delete this account?");
             })
-           
-          
         </script>
 
     </div>
